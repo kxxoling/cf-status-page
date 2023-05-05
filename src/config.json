@@ -1,0 +1,45 @@
+{
+  "settings": {
+    "title": "Status Page",
+    "url": "",
+    "logo": "logo-192x192.png",
+    "daysInHistogram": 90,
+    "collectResponseTimes": true,
+    "allMonitorsOperational": "All Systems Operational",
+    "notAllMonitorsOperational": "Not All Systems Operational",
+    "monitorLabelOperational": "Operational",
+    "monitorLabelNotOperational": "Not Operational",
+    "monitorLabelNoData": "No data",
+    "dayInHistogramNoData": "No data",
+    "dayInHistogramOperational": "All good",
+    "dayInHistogramNotOperational": " incident(s)"
+  },
+  "monitors": [
+    {
+      "id": "workers-cloudflare-com",
+      "name": "workers.cloudflare.com",
+      "description": "You write code. They handle the rest.",
+      "url": "https://workers.cloudflare.com/",
+      "method": "GET",
+      "expectStatus": 200,
+      "followRedirect": false,
+      "linkable": false
+    },
+    {
+      "id": "www-cloudflare-com",
+      "name": "www.cloudflare.com",
+      "description": "Built for anything connected to the Internet.",
+      "url": "https://www.cloudflare.com",
+      "method": "GET",
+      "expectStatus": 200,
+      "linkable": true
+    },
+    {
+      "id": "blog-cloudflare-com",
+      "name": "The Cloudflare Blog",
+      "url": "https://blog.cloudflare.com/",
+      "method": "GET",
+      "expectStatus": 200
+    }
+  ]
+}

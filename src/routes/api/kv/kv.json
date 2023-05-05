@@ -1,0 +1,99 @@
+{
+  "lastUpdate": {
+    "allOperational": true,
+    "time": 1683625335194,
+    "loc": "NRT"
+  },
+  "monitors": {
+    "workers-cloudflare-com": {
+      "firstCheck": "2023-05-08",
+      "lastCheck": {
+        "status": 200,
+        "statusText": "OK",
+        "operational": true
+      },
+      "checks": {
+        "2023-05-08": {
+          "fails": 0,
+          "res": {
+            "HKG": {
+              "n": 1,
+              "ms": 1059,
+              "a": 1059
+            }
+          }
+        },
+        "2023-05-09": {
+          "fails": 0,
+          "res": {
+            "NRT": {
+              "n": 5,
+              "ms": 1902,
+              "a": 380
+            }
+          }
+        }
+      }
+    },
+    "www-cloudflare-com": {
+      "firstCheck": "2023-05-08",
+      "lastCheck": {
+        "status": 200,
+        "statusText": "OK",
+        "operational": true
+      },
+      "checks": {
+        "2023-05-08": {
+          "fails": 0,
+          "res": {
+            "HKG": {
+              "n": 1,
+              "ms": 33,
+              "a": 33
+            }
+          }
+        },
+        "2023-05-09": {
+          "fails": 0,
+          "res": {
+            "NRT": {
+              "n": 5,
+              "ms": 153,
+              "a": 31
+            }
+          }
+        }
+      }
+    },
+    "blog-cloudflare-com": {
+      "firstCheck": "2023-05-08",
+      "lastCheck": {
+        "status": 200,
+        "statusText": "OK",
+        "operational": true
+      },
+      "checks": {
+        "2023-05-08": {
+          "fails": 0,
+          "res": {
+            "HKG": {
+              "n": 1,
+              "ms": 31,
+              "a": 31
+            }
+          }
+        },
+        "2023-05-09": {
+          "fails": 0,
+          "res": {
+            "NRT": {
+              "n": 5,
+              "ms": 132,
+              "a": 26
+            }
+          }
+        }
+      }
+    }
+  }
+}
