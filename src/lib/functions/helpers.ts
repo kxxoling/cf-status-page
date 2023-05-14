@@ -20,7 +20,13 @@ export async function setKVMonitors(env: ENV, data: JSON) {
 //     : config.settings.monitorLabelNotOperational
 // }
 
-async function setKV(env, key, value, metadata, expirationTtl) {
+async function setKV(
+  env: ENV,
+  key: string,
+  value: string | ArrayBuffer | ArrayBufferView | ReadableStream<any>,
+  metadata: KVNamespacePutOptions['metadata'],
+  expirationTtl?: number
+) {
   return env.KV_STATUS_PAGE.put(key, value, { metadata, expirationTtl });
 }
 
@@ -113,5 +119,5 @@ export async function getCheckLocation() {
   const res = await fetch('https://cloudflare-dns.com/dns-query', {
     method: 'OPTIONS'
   });
-  return res.headers.get('cf-ray').split('-')[1];
+  return res.headers?.get('cf-ray')?.split('-')[1];
 }
