@@ -10,6 +10,8 @@ declare global {
     interface Platform {
       env: {
         KV_STATUS_PAGE: KVNamespace;
+        SECRET_TELEGRAM_CHAT_ID?: string;
+        SECRET_TELEGRAM_API_TOKEN?: string;
       };
       context: {
         waitUntil(promise: Promise<any>): void;

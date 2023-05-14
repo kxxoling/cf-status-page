@@ -1,4 +1,5 @@
 // import fetch from 'node-fetch'
+import config from '../../config.json';
 
 const kvDataKey = 'monitors_data_v1_1';
 
@@ -14,11 +15,11 @@ export async function setKVMonitors(env: ENV, data: JSON) {
   return setKV(env, kvDataKey, JSON.stringify(data), undefined, undefined);
 }
 
-// const getOperationalLabel = (operational) => {
-//   return operational
-//     ? config.settings.monitorLabelOperational
-//     : config.settings.monitorLabelNotOperational
-// }
+const getOperationalLabel = (operational: boolean) => {
+  return operational
+    ? config.settings.monitorLabelOperational
+    : config.settings.monitorLabelNotOperational;
+};
 
 async function setKV(
   env: ENV,
@@ -70,26 +71,30 @@ async function setKV(
 //   })
 // }
 
-// export async function notifyTelegram(monitor, operational) {
-//   const text = `Monitor *${monitor.name.replaceAll(
-//     '-',
-//     '\\-',
-//   )}* changed status to *${getOperationalLabel(operational)}*
-//   ${operational ? '✅' : '❌'} \`${monitor.method ? monitor.method : 'GET'} ${
-//     monitor.url
-//   }\` \\- 👀 [Status Page](${config.settings.url})`
+export async function notifyTelegram(env: ENV, monitor: App.MonitorConfig, operational: boolean) {
+  if (!env.SECRET_TELEGRAM_CHAT_ID) {
+    console.error('SECRET_TELEGRAM_CHAT_ID is not set');
+    return;
+  }
+  const text = `Monitor *${monitor.name.replaceAll(
+    '-',
+    '\\-'
+  )}* changed status to *${getOperationalLabel(operational)}*
+  ${operational ? '✅' : '❌'} \`${monitor.method ? monitor.method : 'GET'} ${
+    monitor.url
+  }\` \\- 👀 [Status Page](${config.settings.url})`;
 
-//   const payload = new FormData()
-//   payload.append('chat_id', SECRET_TELEGRAM_CHAT_ID)
-//   payload.append('parse_mode', 'MarkdownV2')
-//   payload.append('text', text)
+  const payload = new FormData();
+  payload.append('chat_id', env.SECRET_TELEGRAM_CHAT_ID);
+  payload.append('parse_mode', 'MarkdownV2');
+  payload.append('text', text);
 
-//   const telegramUrl = `https://api.telegram.org/bot${SECRET_TELEGRAM_API_TOKEN}/sendMessage`
-//   return fetch(telegramUrl, {
-//     body: payload,
-//     method: 'POST',
-//   })
-// }
+  const telegramUrl = `https://api.telegram.org/bot${SECRET_TELEGRAM_API_TOKEN}/sendMessage`;
+  return fetch(telegramUrl, {
+    body: payload,
+    method: 'POST'
+  });
+}
 
 // // Visualize your payload using https://leovoel.github.io/embed-visualizer/
 // export async function notifyDiscord(monitor, operational) {
